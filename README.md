@@ -1,8 +1,6 @@
-
-<p align="center"><img src=".github/img/logo.png" alt="ENOPPY" title="ENOPPY"/></p>
+# ENOPPY: Engineering Optimization Problems in Python
 
 ---
-
 
 [![GitHub release](https://img.shields.io/badge/release-0.1.1-yellow.svg)](https://github.com/thieu1995/enoppy/releases)
 [![Wheel](https://img.shields.io/pypi/wheel/gensim.svg)](https://pypi.python.org/pypi/enoppy) 

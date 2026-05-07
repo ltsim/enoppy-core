@@ -15,9 +15,11 @@ def readme():
 
 setup(
     name="enoppy",
-    version="0.1.1",
+    version="0.1.2",
     author="Thieu",
     author_email="nguyenthieu2102@gmail.com",
+    maintainer="ltsim",
+    maintainer_email="tsim@cucei.udg.mx",
     description="ENOPPY: A Python Library for Engineering Optimization Problems",
     long_description=readme(),
     long_description_content_type="text/markdown",
@@ -51,11 +53,11 @@ setup(
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Natural Language :: English",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
         "Topic :: System :: Benchmark",
         "Topic :: Scientific/Engineering",
         "Topic :: Scientific/Engineering :: Mathematics",
@@ -68,9 +70,9 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Utilities",
     ],
-    install_requires=["numpy>=1.17.1", "scipy>=1.7.1", "mealpy>=3.0.1", "opfunu>=1.0.0"],
+    install_requires=["numpy>=1.24.4", "scipy>=1.7.1"],
     extras_require={
         "dev": ["pytest>=7.0", "twine>=4.0.1"],
     },
-    python_requires='>=3.7',
+    python_requires='>=3.8',
 )
