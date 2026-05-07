@@ -54,11 +54,11 @@ dev = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/thieu1995/enoppy"
+"Homepage" = "https://github.com/ltsim/enoppy"
 "Documentation" = "https://enoppy.readthedocs.io/"
-"Source Code" = "https://github.com/thieu1995/enoppy"
-"Original Source" = "https://github.com/thieu1995/enoppy"
-"Bug Tracker" = "https://github.com/thieu1995/enoppy/issues"
+"Source Code" = "https://github.com/ltsim/enoppy"
+"Original Source" = "https://github.com/ltsim/enoppy"
+"Bug Tracker" = "https://github.com/ltsim/enoppy/issues"
 
 [tool.setuptools]
 packages = { find = { exclude = ["tests*", "examples*"] } }
