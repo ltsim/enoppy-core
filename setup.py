@@ -72,7 +72,7 @@ setup(
     ],
     install_requires=["numpy>=1.24.4", "scipy>=1.7.1"],
     extras_require={
-        "dev": ["pytest>=7.0", "twine>=4.0.1"],
+        "dev": ["pytest>=7.0", "twine>=4.0.1", "mypy", "scipy-stubs"],
     },
     python_requires='>=3.8',
 )
