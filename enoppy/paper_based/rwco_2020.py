@@ -8,6 +8,7 @@
 
 import numpy as np
 from scipy.optimize import fminbound
+
 from enoppy.engineer import Engineer
 
 
@@ -22,13 +23,13 @@ class HeatExchangerNetworkDesignCase1Problem(Engineer):
 
     def __init__(self, f_penalty=None):
         super().__init__()
-        self.epsilon = 10**(-4)
+        self.epsilon = 10 ** (-4)
         self._n_dims = 9
         self._n_objs = 1
         self._n_eq_cons = 8
         self._n_cons = 8
         self._bounds = np.array([(0., 10.), (0., 200), (0., 100.), (0., 200.), (1000, 2000000),
-                        (0., 600.), (100, 600.), (100., 600.), (100., 900)])
+                                 (0., 600.), (100, 600.), (100., 600.), (100., 900)])
         self.check_penalty_func(f_penalty)
 
     def get_objs(self, x):
@@ -71,13 +72,15 @@ class HeatExchangerNetworkDesignCase2Problem(Engineer):
 
     def __init__(self, f_penalty=None):
         super().__init__()
-        self.epsilon = 10**(-4)
+        self.epsilon = 10 ** (-4)
         self._n_dims = 11
         self._n_objs = 1
         self._n_eq_cons = 9
         self._n_cons = 9
-        self._bounds = np.array([(10**4, 81.9*10**4), (10**4, 113.1*10**4), (10**4, 205*10**4), (0., 5.074*10**(-2)), (0., 5.074*10**(-2)),
-                        (0., 5.074*10**(-2)), (100, 200.), (100., 300.), (100., 300), (100., 300), (100, 400.)])
+        self._bounds = np.array(
+            [(10 ** 4, 81.9 * 10 ** 4), (10 ** 4, 113.1 * 10 ** 4), (10 ** 4, 205 * 10 ** 4), (0., 5.074 * 10 ** (-2)),
+             (0., 5.074 * 10 ** (-2)),
+             (0., 5.074 * 10 ** (-2)), (100, 200.), (100., 300.), (100., 300), (100., 300), (100, 400.)])
         self.check_penalty_func(f_penalty)
 
     def get_objs(self, x):
@@ -93,7 +96,8 @@ class HeatExchangerNetworkDesignCase2Problem(Engineer):
         hx[4] = x[1] - 1e4 * (400 - x[9])
         hx[5] = x[2] - 1e4 * (600 - x[10])
         hx[6] = x[3] * np.log(np.abs(x[8] - 100) + 1e-8) - x[3] * np.log(300 - x[6] + 1e-8) - x[8] - x[6] + 400
-        hx[7] = x[4] * np.log(np.abs(x[9] - x[6]) + 1e-8) - x[4] * np.log(np.abs(400 - x[7]) + 1e-8) - x[9] + x[6] - x[7] + 400
+        hx[7] = x[4] * np.log(np.abs(x[9] - x[6]) + 1e-8) - x[4] * np.log(np.abs(400 - x[7]) + 1e-8) - x[9] + x[6] - x[
+            7] + 400
         hx[8] = x[5] * np.log(np.abs(x[10] - x[7]) + 1e-8) - x[5] * np.log(100) - x[10] + x[7] + 100
         return hx
 
@@ -121,13 +125,15 @@ class HaverlyPoolingProblem(Engineer):
 
     def __init__(self, f_penalty=None):
         super().__init__()
-        self.epsilon = 10**(-4)
+        self.epsilon = 10 ** (-4)
         self._n_dims = 9
         self._n_objs = 1
         self._n_eq_cons = 4
         self._n_ineq_cons = 2
         self._n_cons = 6
-        self._bounds = np.array([(0., 100.), (0., 200.), (0., 100.), (0., 100.), (0., 100.), (0., 100.), (0., 200.), (0., 100.), (0., 200.)])
+        self._bounds = np.array(
+            [(0., 100.), (0., 200.), (0., 100.), (0., 100.), (0., 100.), (0., 100.), (0., 200.), (0., 100.),
+             (0., 200.)])
         self.check_penalty_func(f_penalty)
 
     def get_objs(self, x):
@@ -176,7 +182,7 @@ class BlendingPoolingSeparationProblem(Engineer):
 
     def __init__(self, f_penalty=None):
         super().__init__()
-        self.epsilon = 10**(-4)
+        self.epsilon = 10 ** (-4)
         self._n_dims = 38
         self._n_objs = 1
         self._n_eq_cons = 32
@@ -253,21 +259,26 @@ class PropaneIsobutaneNButaneNonsharpSeparationProblem(Engineer):
 
     def __init__(self, f_penalty=None):
         super().__init__()
-        self.epsilon = 10**(-4)
+        self.epsilon = 10 ** (-4)
         self._n_dims = 48
         self._n_objs = 1
         self._n_eq_cons = 38
         self._n_cons = 38
-        bounds = [(0., 150), ]*20 + [(0., 1), ]*3 + [(0.85, 1), (0., 30), (0.85, 1), (0., 30), (0.85, 1), (0., 30), (0., 1),
-                                        (0.85, 1), (0., 30), (0., 1), (0., 1), (0., 30), (0., 1), (0., 30)] + [(0., 1), ]*11
+        bounds = [(0., 150), ] * 20 + [(0., 1), ] * 3 + [(0.85, 1), (0., 30), (0.85, 1), (0., 30), (0.85, 1), (0., 30),
+                                                         (0., 1),
+                                                         (0.85, 1), (0., 30), (0., 1), (0., 1), (0., 30), (0., 1),
+                                                         (0., 30)] + [(0., 1), ] * 11
         self._bounds = np.array(bounds)
         self.c = np.array([[0.23947, 0.75835], [-0.0139904, -0.0661588], [0.0093514, 0.0338147],
-                      [0.0077308, 0.0373349], [-0.0005719, 0.0016371], [0.0042656, 0.0288996]])
+                           [0.0077308, 0.0373349], [-0.0005719, 0.0016371], [0.0042656, 0.0288996]])
         self.check_penalty_func(f_penalty)
 
     def get_objs(self, x):
-        f1 = self.c[0, 0] + (self.c[1, 0] + self.c[2, 0] * x[23] + self.c[3, 0] * x[27] + self.c[4, 0] * x[32] + self.c[5, 0] * x[33]) * x[4] + \
-             self.c[0, 1] + (self.c[1, 1] + self.c[2, 1] * x[25] + self.c[3, 1] * x[30] + self.c[4, 1] * x[37] + self.c[5, 1] * x[38]) * x[12]
+        f1 = self.c[0, 0] + (
+                    self.c[1, 0] + self.c[2, 0] * x[23] + self.c[3, 0] * x[27] + self.c[4, 0] * x[32] + self.c[5, 0] *
+                    x[33]) * x[4] + \
+             self.c[0, 1] + (self.c[1, 1] + self.c[2, 1] * x[25] + self.c[3, 1] * x[30] + self.c[4, 1] * x[37] + self.c[
+            5, 1] * x[38]) * x[12]
         return np.array([f1])
 
     def get_eq_cons(self, x):
@@ -336,7 +347,7 @@ class OptimalOperationAlkylationUnitProblem(Engineer):
 
     def __init__(self, f_penalty=None):
         super().__init__()
-        self.epsilon = 10**(-4)
+        self.epsilon = 10 ** (-4)
         self._n_dims = 7
         self._n_objs = 1
         self._n_ineq_cons = 14
@@ -388,7 +399,7 @@ class ReactorNetworkDesignProblem(Engineer):
 
     def __init__(self, f_penalty=None):
         super().__init__()
-        self.epsilon = 10**(-4)
+        self.epsilon = 10 ** (-4)
         self._n_dims = 6
         self._n_objs = 1
         self._n_eq_cons = 4
@@ -441,7 +452,7 @@ class ProcessSynthesis01Problem(Engineer):
 
     def __init__(self, f_penalty=None):
         super().__init__()
-        self.epsilon = 10**(-4)
+        self.epsilon = 10 ** (-4)
         self._n_dims = 2
         self._n_objs = 1
         self._n_ineq_cons = 2
@@ -486,7 +497,7 @@ class ProcessSynthesisAndDesignProblem(Engineer):
 
     def __init__(self, f_penalty=None):
         super().__init__()
-        self.epsilon = 10**(-4)
+        self.epsilon = 10 ** (-4)
         self._n_dims = 3
         self._n_objs = 1
         self._n_ineq_cons = 1
@@ -546,7 +557,7 @@ class ProcessFlowSheetingProblem(Engineer):
         self.check_penalty_func(f_penalty)
 
     def get_objs(self, x):
-        f1 = 5 * (x[0] - 0.5) ** 2 + 0.8 -0.7 * x[2]
+        f1 = 5 * (x[0] - 0.5) ** 2 + 0.8 - 0.7 * x[2]
         return np.array([f1])
 
     def amend_position(self, x, lb=None, ub=None):
@@ -589,7 +600,7 @@ class TwoReactorProblem(Engineer):
         self._n_eq_cons = 5
         self._n_ineq_cons = 4
         self._n_cons = 9
-        bounds = [(0., 100.), ] * 6 + [(0., 1.99), ]*2
+        bounds = [(0., 100.), ] * 6 + [(0., 1.99), ] * 2
         self._bounds = np.array(bounds)
         self.check_penalty_func(f_penalty)
 
@@ -604,17 +615,17 @@ class TwoReactorProblem(Engineer):
 
     def get_eq_cons(self, x):
         h1 = x[6] + x[7] - 1
-        h2 = x[2] - 0.9*(1 - np.exp(0.5*x[4]))*x[0]
-        h3 = x[3] - 0.8*(1 - np.exp(0.4 * x[5])) * x[1]
+        h2 = x[2] - 0.9 * (1 - np.exp(0.5 * x[4])) * x[0]
+        h3 = x[3] - 0.8 * (1 - np.exp(0.4 * x[5])) * x[1]
         h4 = x[2] + x[3] - 10
-        h5 = x[2]*x[6] + x[3]*x[7] - 10
+        h5 = x[2] * x[6] + x[3] * x[7] - 10
         return np.array([h1, h2, h3, h4, h5])
 
     def get_ineq_cons(self, x):
-        g1 = x[4] - 10*x[6]
-        g2 = x[5] - 10*x[7]
-        g3 = x[0] - 20*x[6]
-        g4 = x[1] - 20*x[7]
+        g1 = x[4] - 10 * x[6]
+        g2 = x[5] - 10 * x[7]
+        g3 = x[0] - 20 * x[6]
+        g4 = x[1] - 20 * x[7]
         return np.array([g1, g2, g3, g4])
 
     def get_cons(self, x):
@@ -643,17 +654,18 @@ class ProcessSynthesis02Problem(Engineer):
 
     def __init__(self, f_penalty=None):
         super().__init__()
-        self.epsilon = 10**(-4)
+        self.epsilon = 10 ** (-4)
         self._n_dims = 7
         self._n_objs = 1
         self._n_ineq_cons = 9
         self._n_cons = 9
-        bounds = [(0., 100.), ]*3 + [(0., 1.99), ]*4
+        bounds = [(0., 100.), ] * 3 + [(0., 1.99), ] * 4
         self._bounds = np.array(bounds)
         self.check_penalty_func(f_penalty)
 
     def get_objs(self, x):
-        f1 = (1-x[3])**2 + (1-x[4])**2 + (1-x[5])**2 - np.log(1 + x[6]) + (1 - x[0])**2 + (2-x[1])**2 + (3-x[2])**2
+        f1 = (1 - x[3]) ** 2 + (1 - x[4]) ** 2 + (1 - x[5]) ** 2 - np.log(1 + x[6]) + (1 - x[0]) ** 2 + (
+                    2 - x[1]) ** 2 + (3 - x[2]) ** 2
         return np.array([f1])
 
     def amend_position(self, x, lb=None, ub=None):
@@ -665,14 +677,14 @@ class ProcessSynthesis02Problem(Engineer):
 
     def get_ineq_cons(self, x):
         g1 = np.sum(x[:5]) - 5
-        g2 = x[0]**2 + x[1]**2 + x[2]**2 + x[5]**3 - 5.5
+        g2 = x[0] ** 2 + x[1] ** 2 + x[2] ** 2 + x[5] ** 3 - 5.5
         g3 = x[0] + x[3] - 1.2
         g4 = x[1] + x[4] - 1.8
         g5 = x[2] + x[5] - 2.5
         g6 = x[0] + x[6] - 1.2
-        g7 = x[4]**2 + x[1]**2 - 1.64
-        g8 = x[5]**2 + x[2]**2 - 4.25
-        g9 = x[4]**2 + x[2]**2 - 4.64
+        g7 = x[4] ** 2 + x[1] ** 2 - 1.64
+        g8 = x[5] ** 2 + x[2] ** 2 - 4.25
+        g9 = x[4] ** 2 + x[2] ** 2 - 4.64
         return np.array([g1, g2, g3, g4, g5, g6, g7, g8, g9])
 
     def get_cons(self, x):
@@ -699,17 +711,18 @@ class ProcessDesignProblem(Engineer):
 
     def __init__(self, f_penalty=None):
         super().__init__()
-        self.epsilon = 10**(-4)
+        self.epsilon = 10 ** (-4)
         self._n_dims = 5
         self._n_objs = 1
         self._n_ineq_cons = 3
         self._n_cons = 3
         self._bounds = np.array([(27., 45), (27., 45), (27., 45), (78, 102.99), (33, 45.99)])
-        self.a = [85.334407, 0.0056858, 0.0006262, 0.0022053, 80.51249, 0.0071317, 0.0029955, 0.0021813, 9.300961, 0.0047026, 0.0012547, 0.0019085]
+        self.a = [85.334407, 0.0056858, 0.0006262, 0.0022053, 80.51249, 0.0071317, 0.0029955, 0.0021813, 9.300961,
+                  0.0047026, 0.0012547, 0.0019085]
         self.check_penalty_func(f_penalty)
 
     def get_objs(self, x):
-        f1 = -5.357854 * x[0] ** 2 + 0.835689 * x[3]*x[2] - 37.29329 * x[3] + 40792.141
+        f1 = -5.357854 * x[0] ** 2 + 0.835689 * x[3] * x[2] - 37.29329 * x[3] + 40792.141
         return np.array([f1])
 
     def amend_position(self, x, lb=None, ub=None):
@@ -718,9 +731,9 @@ class ProcessDesignProblem(Engineer):
         return x
 
     def get_ineq_cons(self, x):
-        g1 = -92 + self.a[2]*x[3]*x[1] + self.a[0] + self.a[1]*x[3]*x[2] - self.a[3]*x[3]*x[2]
-        g2 = -110 + self.a[6]*x[3]*x[1] + self.a[4] + self.a[5]*x[4]*x[2] + self.a[7]*x[0]**2
-        g3 = self.a[8] + self.a[10]*x[3]*x[0] + self.a[9]*x[3]*x[2] - 25 + self.a[11]*x[0]*x[1]
+        g1 = -92 + self.a[2] * x[3] * x[1] + self.a[0] + self.a[1] * x[3] * x[2] - self.a[3] * x[3] * x[2]
+        g2 = -110 + self.a[6] * x[3] * x[1] + self.a[4] + self.a[5] * x[4] * x[2] + self.a[7] * x[0] ** 2
+        g3 = self.a[8] + self.a[10] * x[3] * x[0] + self.a[9] * x[3] * x[2] - 25 + self.a[11] * x[0] * x[1]
         return np.array([g1, g2, g3])
 
     def get_cons(self, x):
@@ -747,13 +760,14 @@ class MultiProductBatchPlantProblem(Engineer):
 
     def __init__(self, f_penalty=None):
         super().__init__()
-        self.epsilon = 10**(-4)
+        self.epsilon = 10 ** (-4)
         self._n_dims = 10
         self._n_objs = 1
         self._n_ineq_cons = 13
         self._n_cons = 13
         self._bounds = np.array([
-            (1, 3.99), (1, 3.99), (1, 3.99), (250, 2500), (250, 2500), (250, 2500), (20/3, 20), (16/3, 16), (40, 700), (10, 450)
+            (1, 3.99), (1, 3.99), (1, 3.99), (250, 2500), (250, 2500), (250, 2500), (20 / 3, 20), (16 / 3, 16),
+            (40, 700), (10, 450)
         ])
         self.S = np.array([[2, 3, 4], [4, 6, 3]])
         self.t = np.array([[8, 20, 8], [16, 4, 4]])
@@ -783,7 +797,7 @@ class MultiProductBatchPlantProblem(Engineer):
         g4 = self.S[1, 0] * B2 - V1
         g5 = self.S[1, 1] * B2 - V2
         g6 = self.S[1, 2] * B2 - V3
-        g7 = self.Q1*TL1/B1 + self.Q2*TL2/B2 - self.H
+        g7 = self.Q1 * TL1 / B1 + self.Q2 * TL2 / B2 - self.H
         g8 = self.t[0, 0] - N1 * TL1
         g9 = self.t[0, 1] - N2 * TL1
         g10 = self.t[0, 2] - N3 * TL1
@@ -816,7 +830,7 @@ class WeightMinimizationSpeedReducerProblem(Engineer):
 
     def __init__(self, f_penalty=None):
         super().__init__()
-        self.epsilon = 10**(-4)
+        self.epsilon = 10 ** (-4)
         self._n_dims = 7
         self._n_objs = 1
         self._n_ineq_cons = 11
@@ -827,8 +841,9 @@ class WeightMinimizationSpeedReducerProblem(Engineer):
         self.check_penalty_func(f_penalty)
 
     def get_objs(self, x):
-        f1 = 0.7854 * x[0] * x[1] ** 2 * (3.3333 * x[2] ** 2 + 14.9334 * x[2] - 43.0934) - 1.508 * x[0] * (x[5] ** 2 + x[6] ** 2) + \
-         7.477 * (x[5] ** 3 + x[6] ** 3) + 0.7854 * (x[3] * x[5] ** 2 + x[4] * x[6] ** 2)
+        f1 = 0.7854 * x[0] * x[1] ** 2 * (3.3333 * x[2] ** 2 + 14.9334 * x[2] - 43.0934) - 1.508 * x[0] * (
+                    x[5] ** 2 + x[6] ** 2) + \
+             7.477 * (x[5] ** 3 + x[6] ** 3) + 0.7854 * (x[3] * x[5] ** 2 + x[4] * x[6] ** 2)
         return np.array([f1])
 
     def get_ineq_cons(self, x):
@@ -867,7 +882,7 @@ class OptimalDesignIndustrialRefrigerationSystemProblem(Engineer):
 
     def __init__(self, f_penalty=None):
         super().__init__()
-        self.epsilon = 10**(-4)
+        self.epsilon = 10 ** (-4)
         self._n_dims = 14
         self._n_objs = 1
         self._n_ineq_cons = 15
@@ -876,11 +891,14 @@ class OptimalDesignIndustrialRefrigerationSystemProblem(Engineer):
         self.check_penalty_func(f_penalty)
 
     def get_objs(self, x):
-        f1 = 63098.88 * x[1] * x[3] * x[11] + 5441.5 * x[1] ** 2 * x[11] + 115055.5 * x[1] ** 1.664 * x[5] + 6172.27 * x[1] ** 2 * x[5] + \
-         63098.88 * x[0] * x[2] * x[10] + 5441.5 * x[0] ** 2 * x[10] + 115055.5 * x[0] ** 1.664 * x[4] + 6172.27 * x[0] ** 2 * x[4] + \
-         140.53 * x[0] * x[10] + 281.29 * x[2] * x[10] + 70.26 * x[0] ** 2 + 281.29 * x[0] * x[2] + 281.29 * x[2] ** 2 + \
-         14437 * x[7] ** 1.8812 * x[11] ** 0.3424 * x[9] * x[13] ** (-1) * x[0] ** 2 * \
-         x[6] * x[8] ** (-1) + 20470.2 * x[6] ** (2.893) * x[10] ** 0.316 * x[0] ** 2
+        f1 = 63098.88 * x[1] * x[3] * x[11] + 5441.5 * x[1] ** 2 * x[11] + 115055.5 * x[1] ** 1.664 * x[5] + 6172.27 * \
+             x[1] ** 2 * x[5] + \
+             63098.88 * x[0] * x[2] * x[10] + 5441.5 * x[0] ** 2 * x[10] + 115055.5 * x[0] ** 1.664 * x[4] + 6172.27 * \
+             x[0] ** 2 * x[4] + \
+             140.53 * x[0] * x[10] + 281.29 * x[2] * x[10] + 70.26 * x[0] ** 2 + 281.29 * x[0] * x[2] + 281.29 * x[
+                 2] ** 2 + \
+             14437 * x[7] ** 1.8812 * x[11] ** 0.3424 * x[9] * x[13] ** (-1) * x[0] ** 2 * \
+             x[6] * x[8] ** (-1) + 20470.2 * x[6] ** (2.893) * x[10] ** 0.316 * x[0] ** 2
         return np.array([f1])
 
     def get_ineq_cons(self, x):
@@ -895,7 +913,8 @@ class OptimalDesignIndustrialRefrigerationSystemProblem(Engineer):
         gx[7] = 0.0099 * x[0] / x[2] - 1
         gx[8] = 0.0193 * x[1] / x[3] - 1
         gx[9] = 0.0298 * x[0] / x[4] - 1
-        gx[10] = 47.136 * x[1] ** 0.333 / x[9] * x[11] - 1.333 * x[7] * x[12] ** 2.1195 + 62.08 * x[12] ** 2.1195 * x[7] ** 0.2 / (x[11] * x[9]) - 1
+        gx[10] = 47.136 * x[1] ** 0.333 / x[9] * x[11] - 1.333 * x[7] * x[12] ** 2.1195 + 62.08 * x[12] ** 2.1195 * x[
+            7] ** 0.2 / (x[11] * x[9]) - 1
         gx[11] = 0.056 * x[1] / x[5] - 1
         gx[12] = 2 / x[8] - 1
         gx[13] = 2 / x[9] - 1
@@ -924,7 +943,7 @@ class TensionCompressionSpringDesignProblem(Engineer):
 
     def __init__(self, f_penalty=None):
         super().__init__()
-        self.epsilon = 10**(-4)
+        self.epsilon = 10 ** (-4)
         self._n_dims = 3
         self._n_objs = 1
         self._n_ineq_cons = 4
@@ -966,7 +985,7 @@ class PressureVesselDesignProblem(Engineer):
 
     def __init__(self, f_penalty=None):
         super().__init__()
-        self.epsilon = 10**(-4)
+        self.epsilon = 10 ** (-4)
         self._n_dims = 4
         self._n_objs = 1
         self._n_ineq_cons = 4
@@ -1019,7 +1038,7 @@ class WeldedBeamDesignProblem(Engineer):
 
     def __init__(self, f_penalty=None):
         super().__init__()
-        self.epsilon = 10**(-4)
+        self.epsilon = 10 ** (-4)
         self._n_dims = 4
         self._n_objs = 1
         self._n_ineq_cons = 5
@@ -1039,7 +1058,8 @@ class WeldedBeamDesignProblem(Engineer):
         return np.array([f1])
 
     def get_ineq_cons(self, x):
-        Pc = 4.013 * self.E * np.sqrt(x[2] ** 2 * x[3] ** 6 / 30) / self.L ** 2 * (1 - x[2] / (2 * self.L) * np.sqrt(self.E / (4 * self.G)))
+        Pc = 4.013 * self.E * np.sqrt(x[2] ** 2 * x[3] ** 6 / 30) / self.L ** 2 * (
+                    1 - x[2] / (2 * self.L) * np.sqrt(self.E / (4 * self.G)))
         sigma = 6 * self.P * self.L / (x[3] * x[2] ** 2)
         delta = 6 * self.P * self.L ** 3 / (self.E * x[2] ** 2 * x[3])
         J = 2 * (np.sqrt(2) * x[0] * x[1] * (x[1] ** 2 / 4 + (x[0] + x[2]) ** 2 / 4))
@@ -1078,7 +1098,7 @@ class ThreeBarTrussDesignProblem(Engineer):
 
     def __init__(self, f_penalty=None):
         super().__init__()
-        self.epsilon = 10**(-4)
+        self.epsilon = 10 ** (-4)
         self._n_dims = 2
         self._n_objs = 1
         self._n_ineq_cons = 3
@@ -1122,7 +1142,7 @@ class MultipleDiskClutchBrakeDesignProblem(Engineer):
 
     def __init__(self, f_penalty=None):
         super().__init__()
-        self.epsilon = 10**(-4)
+        self.epsilon = 10 ** (-4)
         self._n_dims = 5
         self._n_objs = 1
         self._n_ineq_cons = 8
@@ -1160,7 +1180,7 @@ class MultipleDiskClutchBrakeDesignProblem(Engineer):
         gx = np.zeros(self.n_ineq_cons)
         gx[0] = Prz - self.pmax
         gx[1] = Prz * Vsr - self.pmax * self.Vsrmax
-        gx[2] = x[0] + self.delR -x[1]
+        gx[2] = x[0] + self.delR - x[1]
         gx[3] = (x[4] + 1) * (x[2] + self.delta) - self.Lmax
         gx[4] = self.s * self.Ms - Mh
         gx[5] = -T
@@ -1190,7 +1210,7 @@ class PlanetaryGearTrainDesignOptimizationProblem(Engineer):
 
     def __init__(self, f_penalty=None):
         super().__init__()
-        self.epsilon = 10**(-4)
+        self.epsilon = 10 ** (-4)
         self._n_dims = 9
         self._n_objs = 1
         self._n_ineq_cons = 10
@@ -1242,7 +1262,8 @@ class PlanetaryGearTrainDesignOptimizationProblem(Engineer):
         gx[6] = -((N4 + N5) * np.sin(np.pi / p) - N5 - 2 - self.dlt55)
         beta = np.arccos(((N6 - N3) ** 2 + (N4 + N5) ** 2 - (N3 + N5) ** 2) / (2 * (N6 - N3) * (N4 + N5)))
         if beta == beta.real:
-            gx[7] = (N3 + N5 + 2 + self.dlt35) ** 2 - ((N6 - N3) ** 2 + (N4 + N5) ** 2 - 2 * (N6 - N3) * (N4 + N5) * np.cos(2 * np.pi / p - beta))
+            gx[7] = (N3 + N5 + 2 + self.dlt35) ** 2 - (
+                        (N6 - N3) ** 2 + (N4 + N5) ** 2 - 2 * (N6 - N3) * (N4 + N5) * np.cos(2 * np.pi / p - beta))
         else:
             gx[7] = 1e6
         gx[8] = -(N6 - 2 * N3 - N4 - 4 - 2 * self.dlt34)
@@ -1275,7 +1296,7 @@ class StepConePulleyProblem(Engineer):
 
     def __init__(self, f_penalty=None):
         super().__init__()
-        self.epsilon = 10**(-4)
+        self.epsilon = 10 ** (-4)
         self._n_dims = 5
         self._n_objs = 1
         self._n_ineq_cons = 8
@@ -1300,8 +1321,9 @@ class StepConePulleyProblem(Engineer):
         d3 = x[2] * 1e-3
         d4 = x[3] * 1e-3
         w = x[4] * 1e-3
-        f1 = self.rho * w * np.pi / 4 * (d1 ** 2 * (1 + (self.N1 / self.N) ** 2) + d2 ** 2 * (1 + (self.N2 / self.N) ** 2) +
-                                    d3 ** 2 * (1 + (self.N3 / self.N) ** 2) + d4 ** 2 * (1 + (self.N4 / self.N) ** 2))
+        f1 = self.rho * w * np.pi / 4 * (
+                    d1 ** 2 * (1 + (self.N1 / self.N) ** 2) + d2 ** 2 * (1 + (self.N2 / self.N) ** 2) +
+                    d3 ** 2 * (1 + (self.N3 / self.N) ** 2) + d4 ** 2 * (1 + (self.N4 / self.N) ** 2))
         return np.array([f1, ])
 
     def get_eq_cons(self, x):
@@ -1329,10 +1351,14 @@ class StepConePulleyProblem(Engineer):
         R2 = np.exp(self.mu * (np.pi - 2 * np.arcsin((self.N2 / self.N - 1) * d2 / (2 * self.a))))
         R3 = np.exp(self.mu * (np.pi - 2 * np.arcsin((self.N3 / self.N - 1) * d3 / (2 * self.a))))
         R4 = np.exp(self.mu * (np.pi - 2 * np.arcsin((self.N4 / self.N - 1) * d4 / (2 * self.a))))
-        P1 = self.s * self.t * w * (1 - np.exp(-self.mu * (np.pi - 2 * np.arcsin((self.N1 / self.N - 1) * d1 / (2 * self.a))))) * np.pi * d1 * self.N1 / 60
-        P2 = self.s * self.t * w * (1 - np.exp(-self.mu * (np.pi - 2 * np.arcsin((self.N2 / self.N - 1) * d2 / (2 * self.a))))) * np.pi * d2 * self.N2 / 60
-        P3 = self.s * self.t * w * (1 - np.exp(-self.mu * (np.pi - 2 * np.arcsin((self.N3 / self.N - 1) * d3 / (2 * self.a))))) * np.pi * d3 * self.N3 / 60
-        P4 = self.s * self.t * w * (1 - np.exp(-self.mu * (np.pi - 2 * np.arcsin((self.N4 / self.N - 1) * d4 / (2 * self.a))))) * np.pi * d4 * self.N4 / 60
+        P1 = self.s * self.t * w * (1 - np.exp(
+            -self.mu * (np.pi - 2 * np.arcsin((self.N1 / self.N - 1) * d1 / (2 * self.a))))) * np.pi * d1 * self.N1 / 60
+        P2 = self.s * self.t * w * (1 - np.exp(
+            -self.mu * (np.pi - 2 * np.arcsin((self.N2 / self.N - 1) * d2 / (2 * self.a))))) * np.pi * d2 * self.N2 / 60
+        P3 = self.s * self.t * w * (1 - np.exp(
+            -self.mu * (np.pi - 2 * np.arcsin((self.N3 / self.N - 1) * d3 / (2 * self.a))))) * np.pi * d3 * self.N3 / 60
+        P4 = self.s * self.t * w * (1 - np.exp(
+            -self.mu * (np.pi - 2 * np.arcsin((self.N4 / self.N - 1) * d4 / (2 * self.a))))) * np.pi * d4 * self.N4 / 60
         gx = np.zeros(self.n_ineq_cons)
         gx[0] = -R1 + 2
         gx[1] = -R2 + 2
@@ -1368,7 +1394,7 @@ class RobotGripperProblem(Engineer):
 
     def __init__(self, f_penalty=None):
         super().__init__()
-        self.epsilon = 10**(-4)
+        self.epsilon = 10 ** (-4)
         self._n_dims = 7
         self._n_objs = 1
         self._n_ineq_cons = 8
@@ -1393,8 +1419,9 @@ class RobotGripperProblem(Engineer):
         d3 = x[2] * 1e-3
         d4 = x[3] * 1e-3
         w = x[4] * 1e-3
-        f1 = self.rho * w * np.pi / 4 * (d1 ** 2 * (1 + (self.N1 / self.N) ** 2) + d2 ** 2 * (1 + (self.N2 / self.N) ** 2) +
-                                    d3 ** 2 * (1 + (self.N3 / self.N) ** 2) + d4 ** 2 * (1 + (self.N4 / self.N) ** 2))
+        f1 = self.rho * w * np.pi / 4 * (
+                    d1 ** 2 * (1 + (self.N1 / self.N) ** 2) + d2 ** 2 * (1 + (self.N2 / self.N) ** 2) +
+                    d3 ** 2 * (1 + (self.N3 / self.N) ** 2) + d4 ** 2 * (1 + (self.N4 / self.N) ** 2))
         return np.array([f1, ])
 
     def get_eq_cons(self, x):
@@ -1422,10 +1449,14 @@ class RobotGripperProblem(Engineer):
         R2 = np.exp(self.mu * (np.pi - 2 * np.arcsin((self.N2 / self.N - 1) * d2 / (2 * self.a))))
         R3 = np.exp(self.mu * (np.pi - 2 * np.arcsin((self.N3 / self.N - 1) * d3 / (2 * self.a))))
         R4 = np.exp(self.mu * (np.pi - 2 * np.arcsin((self.N4 / self.N - 1) * d4 / (2 * self.a))))
-        P1 = self.s * self.t * w * (1 - np.exp(-self.mu * (np.pi - 2 * np.arcsin((self.N1 / self.N - 1) * d1 / (2 * self.a))))) * np.pi * d1 * self.N1 / 60
-        P2 = self.s * self.t * w * (1 - np.exp(-self.mu * (np.pi - 2 * np.arcsin((self.N2 / self.N - 1) * d2 / (2 * self.a))))) * np.pi * d2 * self.N2 / 60
-        P3 = self.s * self.t * w * (1 - np.exp(-self.mu * (np.pi - 2 * np.arcsin((self.N3 / self.N - 1) * d3 / (2 * self.a))))) * np.pi * d3 * self.N3 / 60
-        P4 = self.s * self.t * w * (1 - np.exp(-self.mu * (np.pi - 2 * np.arcsin((self.N4 / self.N - 1) * d4 / (2 * self.a))))) * np.pi * d4 * self.N4 / 60
+        P1 = self.s * self.t * w * (1 - np.exp(
+            -self.mu * (np.pi - 2 * np.arcsin((self.N1 / self.N - 1) * d1 / (2 * self.a))))) * np.pi * d1 * self.N1 / 60
+        P2 = self.s * self.t * w * (1 - np.exp(
+            -self.mu * (np.pi - 2 * np.arcsin((self.N2 / self.N - 1) * d2 / (2 * self.a))))) * np.pi * d2 * self.N2 / 60
+        P3 = self.s * self.t * w * (1 - np.exp(
+            -self.mu * (np.pi - 2 * np.arcsin((self.N3 / self.N - 1) * d3 / (2 * self.a))))) * np.pi * d3 * self.N3 / 60
+        P4 = self.s * self.t * w * (1 - np.exp(
+            -self.mu * (np.pi - 2 * np.arcsin((self.N4 / self.N - 1) * d4 / (2 * self.a))))) * np.pi * d4 * self.N4 / 60
         gx = np.zeros(self.n_ineq_cons)
         gx[0] = -R1 + 2
         gx[1] = -R2 + 2
@@ -1451,7 +1482,6 @@ class RobotGripperProblem(Engineer):
         return self.f_penalty(list_objs, list_cons)
 
 
-
 def OBJ11(x, n):
     a = x[0]
     b = x[1]
@@ -1463,18 +1493,23 @@ def OBJ11(x, n):
     P = 100
     if n == 1:
         def fhd(z):
-            return P * b * np.sin(np.arccos((a ** 2 + (l - z) ** 2 + e ** 2 - b ** 2) / (2 * a * np.sqrt((l - z) ** 2 + e ** 2))) + \
-                                  np.arccos((b ** 2 + (l - z) ** 2 + e ** 2 - a ** 2) / (2 * b * np.sqrt((l - z) ** 2 + e ** 2)))) / \
-                   (2 * c * np.cos(np.arccos((a ** 2 + (l - z) ** 2 + e ** 2 - b ** 2) / (2 * a * np.sqrt((l - z) ** 2 + e ** 2)))
-                                   + np.arctan(e / (l - z))))
+            return P * b * np.sin(
+                np.arccos((a ** 2 + (l - z) ** 2 + e ** 2 - b ** 2) / (2 * a * np.sqrt((l - z) ** 2 + e ** 2))) + \
+                np.arccos((b ** 2 + (l - z) ** 2 + e ** 2 - a ** 2) / (2 * b * np.sqrt((l - z) ** 2 + e ** 2)))) / \
+                (2 * c * np.cos(
+                    np.arccos((a ** 2 + (l - z) ** 2 + e ** 2 - b ** 2) / (2 * a * np.sqrt((l - z) ** 2 + e ** 2)))
+                    + np.arctan(e / (l - z))))
 
         fhd_func = fhd
     else:
         def fhd(z):
-            return -(P * b * np.sin(np.arccos((a ** 2 + (l - z) ** 2 + e ** 2 - b ** 2) / (2 * a * np.sqrt((l - z) ** 2 + e ** 2))) +
-                                    np.arccos((b ** 2 + (l - z) ** 2 + e ** 2 - a ** 2) / (2 * b * np.sqrt((l - z) ** 2 + e ** 2)))) /
-                     (2 * c * np.cos(np.arccos((a ** 2 + (l - z) ** 2 + e ** 2 - b ** 2) / (2 * a * np.sqrt((l - z) ** 2 + e ** 2))) +
+            return -(P * b * np.sin(
+                np.arccos((a ** 2 + (l - z) ** 2 + e ** 2 - b ** 2) / (2 * a * np.sqrt((l - z) ** 2 + e ** 2))) +
+                np.arccos((b ** 2 + (l - z) ** 2 + e ** 2 - a ** 2) / (2 * b * np.sqrt((l - z) ** 2 + e ** 2)))) /
+                     (2 * c * np.cos(np.arccos(
+                         (a ** 2 + (l - z) ** 2 + e ** 2 - b ** 2) / (2 * a * np.sqrt((l - z) ** 2 + e ** 2))) +
                                      np.arctan(e / (l - z)))))
+
         fhd_func = fhd
     return fminbound(fhd_func, 0, Zmax)
 

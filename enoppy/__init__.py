@@ -27,6 +27,4 @@
 
 __version__ = "0.1.1"
 
-import inspect
-import re
 from .utils import *

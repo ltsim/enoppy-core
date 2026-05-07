@@ -7,6 +7,7 @@
 # Paper: Multi‑objective equilibrium optimizer slime mould algorithm and its application in solving engineering problems
 
 import numpy as np
+
 from enoppy.engineer import Engineer
 from enoppy.utils.encoder import LabelEncoder
 
@@ -27,23 +28,24 @@ class SpeedReducerProblem(Engineer):
         self.check_penalty_func(f_penalty)
 
     def get_objs(self, x):
-        f1 = 0.7854*x[0]*x[1]**2*(14.9334*x[2] + 3.3333*x[2]**2 - 43.0934) - 1.508*x[0]*(x[5]**2 + x[6]**2) \
-            + 0.7854*(x[3]*x[5]**2 + x[4]*x[6]**2) + 7.4777*(x[5]**3 + x[6]**3)
-        f2 = np.sqrt((745*x[3]/(x[1]*x[2]))**2 + 16.9*10**6)/(0.1*x[5]**3)
+        f1 = 0.7854 * x[0] * x[1] ** 2 * (14.9334 * x[2] + 3.3333 * x[2] ** 2 - 43.0934) - 1.508 * x[0] * (
+                    x[5] ** 2 + x[6] ** 2) \
+             + 0.7854 * (x[3] * x[5] ** 2 + x[4] * x[6] ** 2) + 7.4777 * (x[5] ** 3 + x[6] ** 3)
+        f2 = np.sqrt((745 * x[3] / (x[1] * x[2])) ** 2 + 16.9 * 10 ** 6) / (0.1 * x[5] ** 3)
         return np.array([f1, f2])
 
     def get_cons(self, x):
-        g1 = 27 / (x[0]*x[2]*x[1]**2) - 1
-        g2 = 397.5 / (x[0]*x[1]**2*x[2]**2) - 1
-        g3 = 1.93*x[3]**3 / (x[1]*x[2]*x[5]**4) - 1
-        g4 = 1.93*x[4]**3 / (x[1]*x[2]*x[6]**4) - 1
-        g5 = x[1]*x[2] / 40 - 1
-        g6 = x[0] / (12*x[1]) - 1
-        g7 = 5*x[1] / x[0] - 1
-        g8 = (1.5*x[5] + 1.9) / x[3] - 1
-        g9 = (1.1*x[6] + 1.9) / x[4] - 1
-        g10 = np.sqrt((745*x[3]/(x[1]*x[2]))**2 + 16.9*10**6)/(0.1*x[5]**3) - 1100 - 1
-        g11 = np.sqrt((745*x[4]/(x[1]*x[2]))**2 + 157.5*10**6)/(0.1*x[6]**3) - 850 - 1
+        g1 = 27 / (x[0] * x[2] * x[1] ** 2) - 1
+        g2 = 397.5 / (x[0] * x[1] ** 2 * x[2] ** 2) - 1
+        g3 = 1.93 * x[3] ** 3 / (x[1] * x[2] * x[5] ** 4) - 1
+        g4 = 1.93 * x[4] ** 3 / (x[1] * x[2] * x[6] ** 4) - 1
+        g5 = x[1] * x[2] / 40 - 1
+        g6 = x[0] / (12 * x[1]) - 1
+        g7 = 5 * x[1] / x[0] - 1
+        g8 = (1.5 * x[5] + 1.9) / x[3] - 1
+        g9 = (1.1 * x[6] + 1.9) / x[4] - 1
+        g10 = np.sqrt((745 * x[3] / (x[1] * x[2])) ** 2 + 16.9 * 10 ** 6) / (0.1 * x[5] ** 3) - 1100 - 1
+        g11 = np.sqrt((745 * x[4] / (x[1] * x[2])) ** 2 + 157.5 * 10 ** 6) / (0.1 * x[6] ** 3) - 850 - 1
         return np.array([g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11])
 
     def amend_position(self, x, lb=None, ub=None):
@@ -71,11 +73,11 @@ class SpringProblem(Engineer):
         self._n_objs = 2
         self._n_cons = 8
         self.x0 = [0.009, 0.0095, 0.0104, 0.0118, 0.0128, 0.0132, 0.014,
-              0.015, 0.0162, 0.0173, 0.018, 0.020, 0.023, 0.025,
-              0.028, 0.032, 0.035, 0.041, 0.047, 0.054, 0.063,
-              0.072, 0.080, 0.092, 0.0105, 0.120, 0.135, 0.148,
-              0.162, 0.177, 0.192, 0.207, 0.225, 0.244, 0.263,
-              0.283, 0.307, 0.331, 0.362, 0.394, 0.4375, 0.500]
+                   0.015, 0.0162, 0.0173, 0.018, 0.020, 0.023, 0.025,
+                   0.028, 0.032, 0.035, 0.041, 0.047, 0.054, 0.063,
+                   0.072, 0.080, 0.092, 0.0105, 0.120, 0.135, 0.148,
+                   0.162, 0.177, 0.192, 0.207, 0.225, 0.244, 0.263,
+                   0.283, 0.307, 0.331, 0.362, 0.394, 0.4375, 0.500]
         self.le = LabelEncoder()
         self.le.fit(self.x0)
         self._bounds = [(0, 41.99), (1.0, 30.0), (1, 32)]
@@ -93,7 +95,7 @@ class SpringProblem(Engineer):
         lf = 1.05 * d * (N + 2) + 1000 / K
         C = D / d
         cf = (4 * C - 1) / (4 * C - 4) + 0.615 / C
-        f1 =  0.25 * np.pi ** 2 * (d ** 2) * D * (N + 2)
+        f1 = 0.25 * np.pi ** 2 * (d ** 2) * D * (N + 2)
         f2 = 8000 * cf * D / (np.pi * d ** 3)
         return np.array([f1, f2])
 
@@ -105,14 +107,14 @@ class SpringProblem(Engineer):
         cf = (4 * C - 1) / (4 * C - 4) + 0.615 / C
         f1 = 0.25 * np.pi ** 2 * (x[0] ** 2) * x[1] * (x[2] + 2)
         f2 = 8000 * cf * x[1] / (np.pi * x[0] ** 3)
-        g1 = 0.25 * np.pi**2 * x[0]**2 * x[1]*(x[2] + 2) - 30
+        g1 = 0.25 * np.pi ** 2 * x[0] ** 2 * x[1] * (x[2] + 2) - 30
         g2 = f2 - 189000
         g3 = lf - 14
         g4 = 0.2 - x[0]
         g5 = x[0] + x[1] - 3
         g6 = 3 - C
         g7 = 300 / K - 6
-        g8 = 1.25 - 700/K
+        g8 = 1.25 - 700 / K
         return np.array([g1, g2, g3, g4, g5, g6, g7, g8])
 
     def evaluate(self, x):
@@ -154,10 +156,10 @@ class HydrostaticThrustBearingProblem(Engineer):
         R, R0, mu, Q = x
         P0 = 6 * mu * Q
         W = np.pi * P0 / 2
-        P = (np.log10(np.log10(8.122 * 10**6 * mu + 0.8)) - self.C1) / self.n
-        DeltaT = 2 * (10**P - 560)
+        P = (np.log10(np.log10(8.122 * 10 ** 6 * mu + 0.8)) - self.C1) / self.n
+        DeltaT = 2 * (10 ** P - 560)
         Ef = 9336 * Q * self.gamma * self.C * DeltaT
-        h = (2*np.pi*self.N/60)**2 * 2*np.pi*mu / Ef * (R**4 - R0**4)/4
+        h = (2 * np.pi * self.N / 60) ** 2 * 2 * np.pi * mu / Ef * (R ** 4 - R0 ** 4) / 4
         f1 = 1. / 12 * (Q * P0 / 0.7 + Ef)
         f2 = self.gamma / (self.g * P0) * (Q / (2 * np.pi * R * h))
         return np.array([f1, f2])
@@ -171,7 +173,7 @@ class HydrostaticThrustBearingProblem(Engineer):
         Ef = 9336 * Q * self.gamma * self.C * DeltaT
         h = (2 * np.pi * self.N / 60) ** 2 * 2 * np.pi * mu / Ef * (R ** 4 - R0 ** 4) / 4
         g1 = self.Ws - W
-        g2 =  P0 - self.Pmax
+        g2 = P0 - self.Pmax
         g3 = DeltaT - self.DeltaTmax
         g4 = self.hmin - h
         g5 = R0 - R
@@ -216,9 +218,9 @@ class VibratingPlatformProblem(Engineer):
 
     def get_objs(self, x):
         d1, d2, d3, b, L = x
-        EI = (2*b/3)*(self.E1*d1**3 - self.E2*(d1**3 - d2**3) - self.E3*(d2**3 - d3**3))
-        mu = 2*b*(self.rho1*d1 - self.rho2*(d1 - d2) - self.rho3*(d2 - d3))
-        f1 = -np.pi/(2*L**2) * np.sqrt(EI / mu)
+        EI = (2 * b / 3) * (self.E1 * d1 ** 3 - self.E2 * (d1 ** 3 - d2 ** 3) - self.E3 * (d2 ** 3 - d3 ** 3))
+        mu = 2 * b * (self.rho1 * d1 - self.rho2 * (d1 - d2) - self.rho3 * (d2 - d3))
+        f1 = -np.pi / (2 * L ** 2) * np.sqrt(EI / mu)
         f2 = 2 * b * L * (self.c1 * d1 - self.c2 * (d1 - d2) - self.c3 * (d2 - d3))
         return np.array([f1, f2])
 
@@ -260,9 +262,9 @@ class CarSideImpactProblem(Engineer):
     def get_objs(self, x):
         c1 = np.array([4.90, 6.67, 6.98, 4.01, 1.78, 1e-5, 2.73])
         V_mbp = 10.58 - 0.67275 * x[1] - 0.674 * x[0] * x[1]
-        V_fd = 16.45 - 0.489 * x[2] * x[6] - 0.843 * x[4]*x[5]
+        V_fd = 16.45 - 0.489 * x[2] * x[6] - 0.843 * x[4] * x[5]
         f1 = np.dot(c1, x) + 1.98
-        f2 = 4.72 - 0.19 * x[1] * x[2] - 0.5*x[3]
+        f2 = 4.72 - 0.19 * x[1] * x[2] - 0.5 * x[3]
         f3 = 0.5 * (V_mbp + V_fd)
         return np.array([f1, f2, f3])
 
@@ -270,13 +272,15 @@ class CarSideImpactProblem(Engineer):
         V_mbp = 10.58 - 0.67275 * x[1] - 0.674 * x[0] * x[1]
         V_fd = 16.45 - 0.489 * x[2] * x[6] - 0.843 * x[4] * x[5]
         g1 = 1.16 - 0.0092928 * x[2] - 0.3717 * x[1] * x[3] - 1
-        g2 = 0.261 - 0.06486 * x[0] + 0.0154464 * x[5] - 0.0159 * x[0] * x[1] - 0.019 * x[1] * x[6] + 0.0144 * x[2] * x[4] - 0.32
-        g3 = 0.214 - 0.0587118 * x[0] + 0.018 * x[1]**2 + 0.030408 * x[2] + 0.00817 * x[4] + 0.03099 * x[1] * x[5] - 0.018 * x[1] * x[6] - 0.00364 * x[4] * x[5] - 0.32
-        g4 = 0.74 - 0.61 * x[1] + 0.227 * x[1]**2 - 0.031296 * x[2] - 0.031872 * x[6] - 0.32
+        g2 = 0.261 - 0.06486 * x[0] + 0.0154464 * x[5] - 0.0159 * x[0] * x[1] - 0.019 * x[1] * x[6] + 0.0144 * x[2] * x[
+            4] - 0.32
+        g3 = 0.214 - 0.0587118 * x[0] + 0.018 * x[1] ** 2 + 0.030408 * x[2] + 0.00817 * x[4] + 0.03099 * x[1] * x[
+            5] - 0.018 * x[1] * x[6] - 0.00364 * x[4] * x[5] - 0.32
+        g4 = 0.74 - 0.61 * x[1] + 0.227 * x[1] ** 2 - 0.031296 * x[2] - 0.031872 * x[6] - 0.32
         g5 = 28.98 + 3.818 * x[2] + 1.27296 * x[5] - 2.68065 * x[6] - 4.2 * x[0] * x[1] - 32
         g6 = 33.86 - 3.795 * x[1] + 2.95 * x[2] - 3.4431 * x[6] - 5.057 * x[0] * x[1] + 1.45728 - 32
         g7 = 46.36 - 4.4505 * x[0] - 9.9 * x[1] - 32
-        g8 = 4.72 - 0.19 * x[1] * x[2] - 0.5*x[3] - 4
+        g8 = 4.72 - 0.19 * x[1] * x[2] - 0.5 * x[3] - 4
         g9 = V_mbp - 9.9
         g10 = V_fd - 15.7
         return np.array([g1, g2, g3, g4, g5, g6, g7, g8, g9, g10])
@@ -307,22 +311,22 @@ class WaterResourceManagementProblem(Engineer):
         self.check_penalty_func(f_penalty)
 
     def get_objs(self, x):
-        f1 = 106780.37*(x[1] + x[2]) + 61704.67
-        f2 = 3000*x[0]
-        f3 = 30570 * 2289*x[1]/ (0.06 * 2289)**0.65
-        f4 = 250 * 2289 * np.exp(2.74 - 39.75*x[1] + 9.9*x[2])
-        f5 = 25*(1.39/ (x[0]*x[1]) + 4940*x[2] - 80)
+        f1 = 106780.37 * (x[1] + x[2]) + 61704.67
+        f2 = 3000 * x[0]
+        f3 = 30570 * 2289 * x[1] / (0.06 * 2289) ** 0.65
+        f4 = 250 * 2289 * np.exp(2.74 - 39.75 * x[1] + 9.9 * x[2])
+        f5 = 25 * (1.39 / (x[0] * x[1]) + 4940 * x[2] - 80)
         return np.array([f1, f2, f3, f4, f5])
 
     def get_cons(self, x):
         t = x[0] * x[1]
-        g1 = 4.94*x[2] + 0.00139/ t - 1.08
-        g2 = 1.082*x[2] + 0.000306/ t - 1.0986
-        g3 = 49408.24*x[2] + 12.307/t - 54051.02
-        g4 = 8046.33*x[2] + 2.098 / t - 16696.71
-        g5 = 7883.39*x[2] + 2.138/t - 10705.04
-        g6 = 1721.26*x[2] + 0.417*t - 2136.54
-        g7 = 631.13*x[2] + 0.164/t - 604.48
+        g1 = 4.94 * x[2] + 0.00139 / t - 1.08
+        g2 = 1.082 * x[2] + 0.000306 / t - 1.0986
+        g3 = 49408.24 * x[2] + 12.307 / t - 54051.02
+        g4 = 8046.33 * x[2] + 2.098 / t - 16696.71
+        g5 = 7883.39 * x[2] + 2.138 / t - 10705.04
+        g6 = 1721.26 * x[2] + 0.417 * t - 2136.54
+        g7 = 631.13 * x[2] + 0.164 / t - 604.48
         return np.array([g1, g2, g3, g4, g5, g6, g7])
 
     def evaluate(self, x):
@@ -438,17 +442,18 @@ class MultiProductBatchPlantProblem(Engineer):
         return x
 
     def get_objs(self, x):
-        f1 = np.sum(self.alpha * x[:self.M] * (x[self.M:2*self.M] ** self.beta))
-        f2 = 65 * (self.Q[0]/x[8] + self.Q[1]/x[9]) + 0.08*self.Q[0] + 0.1*self.Q[1]
+        f1 = np.sum(self.alpha * x[:self.M] * (x[self.M:2 * self.M] ** self.beta))
+        f2 = 65 * (self.Q[0] / x[8] + self.Q[1] / x[9]) + 0.08 * self.Q[0] + 0.1 * self.Q[1]
         f3 = self.Q[0] * x[6] / x[8] + self.Q[2] * x[7] / x[9]
         return np.array([f1, f2, f3])
 
     def get_cons(self, x):
         g1 = self.Q[0] * x[6] / x[8] + self.Q[2] * x[7] / x[9] - self.H
         b = np.array(x[-2:])
-        v = np.array(x[self.M:2*self.M])
-        g2 = np.sum(b*self.S - v)
-        g3 = np.sum([self.t[i,j] - x[j] * x[2*self.M+i+self.N] for i in range(self.N) for j in range(self.N, 2*self.M)])
+        v = np.array(x[self.M:2 * self.M])
+        g2 = np.sum(b * self.S - v)
+        g3 = np.sum([self.t[i, j] - x[j] * x[2 * self.M + i + self.N] for i in range(self.N) for j in
+                     range(self.N, 2 * self.M)])
         return np.array([g1, g2, g3])
 
     def evaluate(self, x):
