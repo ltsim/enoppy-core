@@ -3,13 +3,12 @@
 #       Email: nguyenthieu2102@gmail.com            %                                                    
 #       Github: https://github.com/thieu1995        %                         
 # --------------------------------------------------%
-
-from abc import ABC
+import abc
 
 import numpy as np
 
 
-class Engineer(ABC):
+class Engineer(abc.ABC):
     """
     Defines an abstract class for engineering design problems.
 
@@ -202,6 +201,7 @@ class Engineer(ABC):
         else:
             self.f_penalty = self.default_penalty
 
+    @abc.abstractmethod
     def evaluate(self, x):
         """
         Evaluation of the benchmark function.
