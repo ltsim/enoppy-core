@@ -10,8 +10,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "GPLv3" }
 keywords = [
-    "engineering optimization problems", "mathematical optimization",
-    "numba", "numpy2", "pypy", "metaheuristics",
+    "engineering optimization problems", "mathematical optimization", "numpy2", "metaheuristics", "scipy",
     "stochastic optimization", "global optimization"
 ]
 
@@ -34,15 +33,13 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
     "Programming Language :: Python :: Implementation :: CPython",
-    "Programming Language :: Python :: Implementation :: PyPy",
     "Topic :: Scientific/Engineering :: Mathematics",
     "Topic :: Scientific/Engineering :: Artificial Intelligence"
 ]
 
 dependencies = [
-    "numpy>=2.0.0",
-    "scipy>=1.13.0",
-    "numba>=0.60.0",
+    "numpy>=2.4.4",
+    "scipy>=1.15.0",
 ]
 
 [project.optional-dependencies]
