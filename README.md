@@ -10,14 +10,11 @@ This library is a fork of the [ENOPPY](https://github.com/thieu1995/enoppy) libr
 * **Python versions:** 3.10.x, 3.11.x, 3.12.x, 3.13.x, 3.14.x
 * **Dependencies:** numpy, scipy
 
-
-
-
 # Installation
 
 Install the [current PyPI release](https://pypi.python.org/pypi/enoppy):
 ```sh 
-$ pip install git+https://github.com/ltsim/enoppy
+$ pip install git+https://github.com/ltsim/enoppy-core
 ```
 
 After installation, you can import ENOPPY as any other Python module:
@@ -76,33 +73,6 @@ print("Get the constraint values of x0: ", htbp_prob.get_cons(x0))
 print("Evaluate with default penalty function: ", htbp_prob.evaluate(x0))
 ```
 
-For more examples, check out [examples](/examples) folder and the [enoppy](https://enoppy.readthedocs.io/) documentation
-
-
-# Get helps (questions, problems)
-
-* Official source code repo: https://github.com/thieu1995/enoppy
-* Official document: https://enoppy.readthedocs.io/
-* Download releases: https://pypi.org/project/enoppy/
-* Issue tracker: https://github.com/thieu1995/enoppy/issues
-* Notable changes log: https://github.com/thieu1995/enoppy/blob/master/ChangeLog.md
-* Examples with different meapy version: https://github.com/thieu1995/enoppy/blob/master/examples.md
-* Join our telegram community: [link](https://t.me/+fRVCJGuGJg1mNDg1)
-
-* This project also related to our another projects which are "meta-heuristics", "neural-network", and "optimization" 
-  check it here
-	* https://github.com/thieu1995/mealpy
-	* https://github.com/thieu1995/permetrics
-    * https://github.com/thieu1995/opfunu
-    * https://github.com/thieu1995/metaheuristics
-    * https://github.com/thieu1995/MetaCluster
-    * https://github.com/thieu1995/pfevaluator
-    * https://github.com/thieu1995/IntelELM
-    * https://github.com/thieu1995/MetaPerceptron
-    * https://github.com/thieu1995/GrafoRVFL
-    * https://github.com/thieu1995/reflame
-    * https://github.com/aiir-team
-
 # Acknowledgments
 
 If you are using enoppy in your project, we would appreciate citations:
@@ -127,12 +97,9 @@ If you are using enoppy in your project, we would appreciate citations:
 }
 ```
 
-
 ## References 
 
-
 #### paper_based
-
 
 * **ihaoavoa_2022**: Xiao, Y., Guo, Y., Cui, H., Wang, Y., Li, J., & Zhang, Y. (2022). IHAOAVOA: An improved hybrid aquila optimizer and African vultures optimization algorithm for global optimization problems. Mathematical Biosciences and Engineering, 19(11), 10963-11017.
 
@@ -141,4 +108,3 @@ If you are using enoppy in your project, we would appreciate citations:
 * **pdo_2022**: Ezugwu, A. E., Agushaka, J. O., Abualigah, L., Mirjalili, S., & Gandomi, A. H. (2022). Prairie dog optimization algorithm. Neural Computing and Applications, 34(22), 20017-20065.
 
 * **rwco_2020**: Kumar, A., Wu, G., Ali, M. Z., Mallipeddi, R., Suganthan, P. N., & Das, S. (2020). A test-suite of non-convex constrained optimization problems from the real-world and some baseline results. Swarm and Evolutionary Computation, 56, 100693.
-
