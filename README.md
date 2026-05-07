@@ -3,7 +3,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7953206.svg)](https://doi.org/10.5281/zenodo.7953206)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-ENOPPY (Core) is a fork of the [ENOPPY](https://github.com/thieu1995/enoppy) library, which was originally the largest Python library for real-world engineering optimization problems. It was refactored to work with the latest versions of Python and NumPy. It contains all the real-world engineering problems from CEC competitions and research papers.
+This library is a fork of the [ENOPPY](https://github.com/thieu1995/enoppy) library, which was originally the largest Python library for real-world engineering optimization problems. It was refactored to work with the latest versions of Python and NumPy. It contains all the real-world engineering problems from CEC competitions and research papers.
 
 * **Free software:** GNU General Public License (GPL) V3 license
 * **Total problems**: > 50 problems
