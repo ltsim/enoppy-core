@@ -7,6 +7,7 @@
 # Paper: Prairie Dog Optimization Algorithm (PDO-2022)
 
 import numpy as np
+
 from enoppy.engineer import Engineer
 from enoppy.utils.encoder import LabelEncoder
 
@@ -44,7 +45,8 @@ class WeldedBeamProblem(Engineer):
         return np.array([f1])
 
     def get_cons(self, x):
-        Pc_X = 4.013 * self.E * np.sqrt(x[2] ** 2 * x[3] ** 6 / 36) / self.L ** 2 * (1. - x[2] * np.sqrt(self.E / (4 * self.G)) / (2 * self.L))
+        Pc_X = 4.013 * self.E * np.sqrt(x[2] ** 2 * x[3] ** 6 / 36) / self.L ** 2 * (
+                    1. - x[2] * np.sqrt(self.E / (4 * self.G)) / (2 * self.L))
         J = 2 * (np.sqrt(2) * x[0] * x[1] * (x[1] ** 2 / 4 + (x[0] + x[2] / 2) ** 2))
         M = self.P * (self.L + x[1] / 2)
         R = np.sqrt(x[1] ** 2 / 4 + (x[0] + x[2]) ** 2 / 4)
@@ -91,7 +93,8 @@ class PressureVesselProblem(Engineer):
         self.check_penalty_func(f_penalty)
 
     def get_objs(self, x):
-        f1 = 0.6224 * x[2] * x[0] * x[3] + 1.7781 * x[2] ** 2 * x[1] + 3.1611 * x[0] ** 2 * x[3] + 19.8621 * x[2] * x[0] ** 2
+        f1 = 0.6224 * x[2] * x[0] * x[3] + 1.7781 * x[2] ** 2 * x[1] + 3.1611 * x[0] ** 2 * x[3] + 19.8621 * x[2] * x[
+            0] ** 2
         return np.array([f1])
 
     def get_cons(self, x):
@@ -130,7 +133,7 @@ class CompressionSpringProblem(Engineer):
         self.check_penalty_func(f_penalty)
 
     def get_objs(self, x):
-        f1 = (x[2] + 2)*x[1]*x[0]**2
+        f1 = (x[2] + 2) * x[1] * x[0] ** 2
         return np.array([f1])
 
     def get_cons(self, x):
@@ -161,12 +164,13 @@ class SpeedReducerProblem(Engineer):
         self._n_dims = 7
         self._n_objs = 1
         self._n_cons = 11
-        self._bounds = [(2.6, 3.6), (0.7, 0.8), (17, 28.99), (7.3, 8.3), (7.3, 8,3), (2.9, 3.9), (5.0, 5.5)]
+        self._bounds = [(2.6, 3.6), (0.7, 0.8), (17, 28.99), (7.3, 8.3), (7.3, 8, 3), (2.9, 3.9), (5.0, 5.5)]
         self.check_penalty_func(f_penalty)
 
     def get_objs(self, x):
-        f1 = 0.7854*x[0]*x[1]**2*(3.3333*x[2]**2 + 14.9334*x[2] - 43.0934) - 1.508*x[0]*(x[5]**2 + x[6]**2) +\
-            7.4777*(x[5]**3 + x[6]**3) + 0.7854*(x[3]*x[5]**2 + x[4]*x[6]**2)
+        f1 = 0.7854 * x[0] * x[1] ** 2 * (3.3333 * x[2] ** 2 + 14.9334 * x[2] - 43.0934) - 1.508 * x[0] * (
+                    x[5] ** 2 + x[6] ** 2) + \
+             7.4777 * (x[5] ** 3 + x[6] ** 3) + 0.7854 * (x[3] * x[5] ** 2 + x[4] * x[6] ** 2)
         return np.array([f1])
 
     def amend_position(self, x, lb=None, ub=None):
@@ -216,7 +220,7 @@ class ThreeBarTrussProblem(Engineer):
         self.check_penalty_func(f_penalty)
 
     def get_objs(self, x):
-        f1 = (2*np.sqrt(2)*x[0] + x[1]) * self.L
+        f1 = (2 * np.sqrt(2) * x[0] + x[1]) * self.L
         return np.array([f1])
 
     def get_cons(self, x):
@@ -250,7 +254,7 @@ class GearTrainProblem(Engineer):
         self.check_penalty_func(f_penalty)
 
     def get_objs(self, x):
-        f1 = (1. / 6.931 - x[2]*x[1] / (x[0] * x[3]))**2
+        f1 = (1. / 6.931 - x[2] * x[1] / (x[0] * x[3])) ** 2
         return np.array([f1])
 
     def amend_position(self, x, lb=None, ub=None):
@@ -280,7 +284,7 @@ class CantileverBeamProblem(Engineer):
         self._n_dims = 5
         self._n_objs = 1
         self._n_cons = 1
-        self._bounds = [(0.01, 100.),] * 5
+        self._bounds = [(0.01, 100.), ] * 5
         self.check_penalty_func(f_penalty)
 
     def get_objs(self, x):
@@ -288,7 +292,7 @@ class CantileverBeamProblem(Engineer):
         return np.array([f1])
 
     def get_cons(self, x):
-        g1 = 61./x[0]**3 + 37./x[1]**3 + 19./x[2]**3 + 7./x[3]**3 + 1./x[4]**3 - 1
+        g1 = 61. / x[0] ** 3 + 37. / x[1] ** 3 + 19. / x[2] ** 3 + 7. / x[3] ** 3 + 1. / x[4] ** 3 - 1
         return np.array([g1, ])
 
     def evaluate(self, x):
@@ -316,12 +320,14 @@ class IBeamProblem(Engineer):
         self.check_penalty_func(f_penalty)
 
     def get_objs(self, x):
-        f1 = 500. / ( (x[2]*(x[1]-2*x[3])**3)/12 + (x[0]*x[3]**3/6) + 2*x[0]*x[3]*(x[1] - x[3])**2 )
+        f1 = 500. / ((x[2] * (x[1] - 2 * x[3]) ** 3) / 12 + (x[0] * x[3] ** 3 / 6) + 2 * x[0] * x[3] * (
+                    x[1] - x[3]) ** 2)
         return np.array([f1])
 
     def get_cons(self, x):
         g1 = 2 * x[0] * x[2] + x[2] * (x[1] - 2 * x[3]) - 300
-        g2 = (18 * x[1] * 10 ** 4) / (x[2] * (x[1] - 2 * x[3]) ** 3 + 2 * x[0] * x[2] * (4 * x[3] ** 2 + 3 * x[1] * (x[1] - 2 * x[3]))) + \
+        g2 = (18 * x[1] * 10 ** 4) / (
+                    x[2] * (x[1] - 2 * x[3]) ** 3 + 2 * x[0] * x[2] * (4 * x[3] ** 2 + 3 * x[1] * (x[1] - 2 * x[3]))) + \
              15 * x[0] * 10 ** 3 / ((x[1] - 2 * x[3]) * x[2] ** 2 + 2 * x[2] * x[0] ** 3) - 56
         return np.array([g1, g2])
 
@@ -356,7 +362,7 @@ class TubularColumnProblem(Engineer):
         self.check_penalty_func(f_penalty)
 
     def get_objs(self, x):
-        f1 = 9.8*x[0]*x[1] + 2*x[0]
+        f1 = 9.8 * x[0] * x[1] + 2 * x[0]
         return np.array([f1])
 
     def get_cons(self, x):
@@ -399,13 +405,14 @@ class PistonLeverProblem(Engineer):
     def get_objs(self, x):
         L1 = np.sqrt((x[3] - x[1]) ** 2 + x[0] ** 2)
         L2 = np.sqrt((x[3] * np.sin(self.theta) + x[0]) ** 2 + (x[1] - x[3] * np.cos(self.theta)) ** 2)
-        f1 = 0.25*np.pi*x[2]**2 * (L2 - L1)
+        f1 = 0.25 * np.pi * x[2] ** 2 * (L2 - L1)
         return np.array([f1])
 
     def get_cons(self, x):
         L1 = np.sqrt((x[3] - x[1]) ** 2 + x[0] ** 2)
         L2 = np.sqrt((x[3] * np.sin(self.theta) + x[0]) ** 2 + (x[1] - x[3] * np.cos(self.theta)) ** 2)
-        R = np.abs(-x[3] * (x[3] * np.sin(self.theta) + x[0]) + x[0] * (x[1] - x[3] * np.cos(self.theta))) / np.sqrt((x[3] - x[1]) ** 2 + x[0] ** 2)
+        R = np.abs(-x[3] * (x[3] * np.sin(self.theta) + x[0]) + x[0] * (x[1] - x[3] * np.cos(self.theta))) / np.sqrt(
+            (x[3] - x[1]) ** 2 + x[0] ** 2)
         F = np.pi * self.P * x[2] ** 2 / 4
         g1 = self.Q * self.L * np.cos(self.theta) - R * F
         g2 = self.Q * (self.L - x[3]) - self.M_max
@@ -437,12 +444,13 @@ class CorrugatedBulkheadProblem(Engineer):
         self.check_penalty_func(f_penalty)
 
     def get_objs(self, x):
-        f1 = 5.885*x[3]*(x[0] + x[2]) / (x[0] + np.sqrt(np.abs(x[2]**2 - x[1]**2)))
+        f1 = 5.885 * x[3] * (x[0] + x[2]) / (x[0] + np.sqrt(np.abs(x[2] ** 2 - x[1] ** 2)))
         return np.array([f1])
 
     def get_cons(self, x):
         g1 = -x[3] * x[2] * (0.4 * x[0] + x[2] / 6) + 8.94 * (x[0] + np.sqrt(np.abs(x[2] ** 2 - x[1] ** 2)))
-        g2 = -x[3] * x[1] ** 2 * (0.2 * x[0] + x[2] / 12) + 2.2 * (8.94 * (x[0] + np.sqrt(np.abs(x[2] ** 2 - x[1] ** 2)))) ** (4. / 3)
+        g2 = -x[3] * x[1] ** 2 * (0.2 * x[0] + x[2] / 12) + 2.2 * (
+                    8.94 * (x[0] + np.sqrt(np.abs(x[2] ** 2 - x[1] ** 2)))) ** (4. / 3)
         g3 = -x[3] + 0.0156 * x[0] + 0.15
         g4 = -x[3] + 0.0156 * x[2] + 0.15
         g5 = -x[3] + 1.05
@@ -481,7 +489,7 @@ class ReinforcedConcreateBeamProblem(Engineer):
         return x
 
     def get_objs(self, x):
-        f1 = 2.9*x[0] + 0.6*x[1]*x[2]
+        f1 = 2.9 * x[0] + 0.6 * x[1] * x[2]
         return np.array([f1])
 
     def get_cons(self, x):

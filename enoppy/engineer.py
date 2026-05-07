@@ -3,12 +3,12 @@
 #       Email: nguyenthieu2102@gmail.com            %                                                    
 #       Github: https://github.com/thieu1995        %                         
 # --------------------------------------------------%
+import abc
 
 import numpy as np
-from abc import ABC
 
 
-class Engineer(ABC):
+class Engineer(abc.ABC):
     """
     Defines an abstract class for engineering design problems.
 
@@ -56,30 +56,35 @@ class Engineer(ABC):
         self.epsilon = 1e-8
         self.w = 1e8
 
+    @abc.abstractmethod
     def get_objs(self, x):
         """
         Compute the values of the objective functions for a given set of input values.
         """
         pass
 
+    @abc.abstractmethod
     def get_cons(self, x):
         """
         Compute the values of the constraint functions for a given set of input values.
         """
         pass
 
+    @abc.abstractmethod
     def get_eq_cons(self, x):
         """
         Compute the values of the equality constraint functions for a given set of input values.
         """
         pass
 
+    @abc.abstractmethod
     def get_ineq_cons(self, x):
         """
         Compute the values of the inequality constraint functions for a given set of input values.
         """
         pass
 
+    @abc.abstractmethod
     def get_paras(self):
         """
         Return the parameters of the problem. Depended on function
@@ -201,6 +206,7 @@ class Engineer(ABC):
         else:
             self.f_penalty = self.default_penalty
 
+    @abc.abstractmethod
     def evaluate(self, x):
         """
         Evaluation of the benchmark function.

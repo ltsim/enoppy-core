@@ -1,33 +1,13 @@
-# ENOPPY: Engineering Optimization Problems in Python
+# ENOPPY (Core)
 
----
-
-[![GitHub release](https://img.shields.io/badge/release-0.1.1-yellow.svg)](https://github.com/thieu1995/enoppy/releases)
-[![Wheel](https://img.shields.io/pypi/wheel/gensim.svg)](https://pypi.python.org/pypi/enoppy) 
-[![PyPI version](https://badge.fury.io/py/enoppy.svg)](https://badge.fury.io/py/enoppy)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/enoppy.svg)
-![PyPI - Status](https://img.shields.io/pypi/status/enoppy.svg)
-![PyPI - Downloads](https://img.shields.io/pypi/dm/enoppy.svg)
-[![Downloads](https://pepy.tech/badge/enoppy)](https://pepy.tech/project/enoppy)
-[![Tests & Publishes to PyPI](https://github.com/thieu1995/enoppy/actions/workflows/publish-package.yaml/badge.svg)](https://github.com/thieu1995/enoppy/actions/workflows/publish-package.yaml)
-![GitHub Release Date](https://img.shields.io/github/release-date/thieu1995/enoppy.svg)
-[![Documentation Status](https://readthedocs.org/projects/enoppy/badge/?version=latest)](https://enoppy.readthedocs.io/en/latest/?badge=latest)
-[![Chat](https://img.shields.io/badge/Chat-on%20Telegram-blue)](https://t.me/+fRVCJGuGJg1mNDg1)
-[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/thieu1995/enoppy.svg)](http://isitmaintained.com/project/thieu1995/enoppy "Average time to resolve an issue")
-[![Percentage of issues still open](http://isitmaintained.com/badge/open/thieu1995/enoppy.svg)](http://isitmaintained.com/project/thieu1995/enoppy "Percentage of issues still open")
-![GitHub contributors](https://img.shields.io/github/contributors/thieu1995/enoppy.svg)
-[![GitTutorial](https://img.shields.io/badge/PR-Welcome-%23FF8300.svg?)](https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7953206.svg)](https://doi.org/10.5281/zenodo.7953206)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-
-ENOPPY (ENgineering Optimization Problems in PYthon) is the largest python library for real-world engineering 
-optimization problems. Contains all real-world engineering problems from CEC competitions and research papers.
+This library is a fork of the [ENOPPY](https://github.com/thieu1995/enoppy) library, which was originally the largest Python library for real-world engineering optimization problems. It was refactored to work with the latest versions of Python and NumPy. It contains all the real-world engineering problems from CEC competitions and research papers.
 
 * **Free software:** GNU General Public License (GPL) V3 license
 * **Total problems**: > 50 problems
-* **Documentation:** https://enoppy.readthedocs.io/en/latest/
-* **Python versions:** 3.7.x, 3.8.x, 3.9.x, 3.10.x, 3.11.x
+* **Python versions:** 3.10.x, 3.11.x, 3.12.x, 3.13.x, 3.14.x
 * **Dependencies:** numpy, scipy
 
 
@@ -37,7 +17,7 @@ optimization problems. Contains all real-world engineering problems from CEC com
 
 Install the [current PyPI release](https://pypi.python.org/pypi/enoppy):
 ```sh 
-$ pip install enoppy
+$ pip install git+https://github.com/ltsim/enoppy
 ```
 
 After installation, you can import ENOPPY as any other Python module:
