@@ -1,3 +1,10 @@
+# Version 0.1.2.1
+
++ Updating dependencies such as NumPy and SciPy
++ Removing unnecessary external dependencies
++ Partial support for PyPy 3.11
+
+---------------------------------------------------------------------
 
 # Version 0.1.1
 
