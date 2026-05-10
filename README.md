@@ -12,7 +12,7 @@
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/ltsim/enoppy-core/test.yml?style=flat-square&logo=pytest&label=Testing)
 
 
-This library is a fork of the [ENOPPY](https://github.com/thieu1995/enoppy) library, which was originally the largest Python library for real-world engineering optimization problems. It was refactored to work with the latest versions of Python and NumPy. It contains all the real-world engineering problems from CEC competitions and research papers.
+This library is a fork of the [ENOPPY (ENgineering Optimization Problems in PYthon)](https://github.com/thieu1995/enoppy) library, which was originally the largest Python library for real-world engineering optimization problems. It was refactored to work with the latest versions of Python and NumPy. It contains all the real-world engineering problems from CEC competitions and research papers.
 
 * **Free software:** GNU General Public License (GPL) V3 license
 * **Total problems**: > 50 problems
