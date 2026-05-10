@@ -38,7 +38,6 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
     "Programming Language :: Python :: Implementation :: CPython",
-    "Programming Language :: Python :: Implementation :: PyPy",
     "Topic :: Scientific/Engineering :: Mathematics",
     "Topic :: System :: Benchmark",
     "Topic :: Scientific/Engineering",
@@ -60,7 +59,6 @@ dev = [
     "pytest>=9.0.2",
     "twine>=4.0.1",
     "mypy",
-    "ruff"
 ]
 
 [project.urls]
