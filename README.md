@@ -46,6 +46,7 @@ This is a minimal usage example of the enoppy library.
 
 ```python
 from enoppy.paper_based.moeosma_2023 import SpeedReducerProblem
+
 # SRP = SpeedReducerProblem
 # SP = SpringProblem
 # HTBP = HydrostaticThrustBearingProblem
@@ -79,6 +80,7 @@ def penalty_func(list_objectives, list_constraints):
 htbp_prob = HTBP(f_penalty=penalty_func)
 print("Lower bound for this problem: ", htbp_prob.lb)
 print("Upper bound for this problem: ", htbp_prob.ub)
+
 x0 = htbp_prob.create_solution()
 print("Get the objective values of x0: ", htbp_prob.get_objs(x0))
 print("Get the constraint values of x0: ", htbp_prob.get_cons(x0))
