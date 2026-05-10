@@ -59,7 +59,6 @@ dev = [
     "pytest>=9.0.2",
     "twine>=4.0.1",
     "mypy",
-    "ruff"
 ]
 
 [project.urls]
