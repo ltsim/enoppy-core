@@ -19,7 +19,7 @@ This library is a fork of the [ENOPPY](https://github.com/thieu1995/enoppy) libr
 
 # Installation
 
-Install the [current PyPI release](https://pypi.python.org/pypi/enoppy):
+Install the [current PyPI release](https://pypi.python.org/pypi/enoppy-core):
 ```sh 
 $ pip install enoppy-core
 ```
