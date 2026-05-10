@@ -1,18 +1,30 @@
-# ENOPPY (Core)
+# enoppy-core
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7953206.svg)](https://doi.org/10.5281/zenodo.7953206)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg?style=flat-square)](https://www.gnu.org/licenses/gpl-3.0)
+![PyPI - Version](https://img.shields.io/pypi/v/enoppy-core?style=flat-square)
+![PyPI - Implementation](https://img.shields.io/pypi/implementation/enoppy-core?style=flat-square)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/enoppy-core?style=flat-square)
+![PyPI - Wheel](https://img.shields.io/pypi/wheel/enoppy-core?style=flat-square)
+![GitHub Release Date](https://img.shields.io/github/release-date/ltsim/enoppy-core.svg?style=flat-square)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/enoppy-core?style=flat-square)
+
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/ltsim/enoppy-core/publish.yml?style=flat-square&logo=pypi&label=Publish)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/ltsim/enoppy-core/test.yml?style=flat-square&logo=pytest&label=Testing)
+
 
 This library is a fork of the [ENOPPY](https://github.com/thieu1995/enoppy) library, which was originally the largest Python library for real-world engineering optimization problems. It was refactored to work with the latest versions of Python and NumPy. It contains all the real-world engineering problems from CEC competitions and research papers.
 
 * **Free software:** GNU General Public License (GPL) V3 license
 * **Total problems**: > 50 problems
-* **Python versions:** 3.10.x, 3.11.x, 3.12.x, 3.13.x, 3.14.x
-* **Dependencies:** numpy, scipy
 
 # Installation
 
 Install the [current PyPI release](https://pypi.python.org/pypi/enoppy):
+```sh 
+$ pip install enoppy-core
+```
+
+Install from Github:
 ```sh 
 $ pip install git+https://github.com/ltsim/enoppy-core
 ```
@@ -99,12 +111,12 @@ If you are using enoppy in your project, we would appreciate citations:
 
 ## References 
 
-#### paper_based
+### Paper based
 
-* **ihaoavoa_2022**: Xiao, Y., Guo, Y., Cui, H., Wang, Y., Li, J., & Zhang, Y. (2022). IHAOAVOA: An improved hybrid aquila optimizer and African vultures optimization algorithm for global optimization problems. Mathematical Biosciences and Engineering, 19(11), 10963-11017.
+* **ihaoavoa 2022**: Xiao, Y., Guo, Y., Cui, H., Wang, Y., Li, J., & Zhang, Y. (2022). IHAOAVOA: An improved hybrid aquila optimizer and African vultures optimization algorithm for global optimization problems. Mathematical Biosciences and Engineering, 19(11), 10963-11017.
 
-* **moeosma_2023**: Luo, Q., Yin, S., Zhou, G., Meng, W., Zhao, Y., & Zhou, Y. (2023). Multi-objective equilibrium optimizer slime mould algorithm and its application in solving engineering problems. Structural and Multidisciplinary Optimization, 66(5), 114.
+* **moeosma 2023**: Luo, Q., Yin, S., Zhou, G., Meng, W., Zhao, Y., & Zhou, Y. (2023). Multi-objective equilibrium optimizer slime mould algorithm and its application in solving engineering problems. Structural and Multidisciplinary Optimization, 66(5), 114.
 
-* **pdo_2022**: Ezugwu, A. E., Agushaka, J. O., Abualigah, L., Mirjalili, S., & Gandomi, A. H. (2022). Prairie dog optimization algorithm. Neural Computing and Applications, 34(22), 20017-20065.
+* **pdo 2022**: Ezugwu, A. E., Agushaka, J. O., Abualigah, L., Mirjalili, S., & Gandomi, A. H. (2022). Prairie dog optimization algorithm. Neural Computing and Applications, 34(22), 20017-20065.
 
-* **rwco_2020**: Kumar, A., Wu, G., Ali, M. Z., Mallipeddi, R., Suganthan, P. N., & Das, S. (2020). A test-suite of non-convex constrained optimization problems from the real-world and some baseline results. Swarm and Evolutionary Computation, 56, 100693.
+* **rwco 2020**: Kumar, A., Wu, G., Ali, M. Z., Mallipeddi, R., Suganthan, P. N., & Das, S. (2020). A test-suite of non-convex constrained optimization problems from the real-world and some baseline results. Swarm and Evolutionary Computation, 56, 100693.
