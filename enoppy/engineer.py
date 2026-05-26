@@ -201,6 +201,7 @@ class Engineer(abc.ABC):
         else:
             self.f_penalty = self.default_penalty
 
+    @abc.abstractmethod
     def evaluate(self, x):
         """
         Evaluation of the benchmark function.
@@ -216,3 +217,6 @@ class Engineer(abc.ABC):
               the evaluated benchmark function
         """
         pass
+
+    def __call__(self, x):
+        return self.evaluate(x)
