@@ -25,6 +25,6 @@
 # >>> print(p1.get_cons(x0)) # Get all constraints
 # >>> print(p1.evaluate(x0)) # Evaluate the x0 (calculate fitness value with objectives and constraints combination)
 
-__version__ = "0.2"
+__version__ = "2026"
 
 from .utils import *
