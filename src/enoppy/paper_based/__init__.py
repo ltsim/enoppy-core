@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-# Created by "Thieu" at 13:57, 07/05/2023 ----------%
+# Created by "Thieu" at 17:43, 30/07/2022 ----------%
 #       Email: nguyenthieu2102@gmail.com            %
 #       Github: https://github.com/thieu1995        %
 # --------------------------------------------------%
-"""Tests for paper-based engineering problems."""
+"""Engineering problems collected from research papers."""

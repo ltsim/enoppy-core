@@ -1,8 +1,9 @@
 #!/usr/bin/env python
-# Created by "Thieu" at 21:39, 29/06/2022 ----------%                                                                               
-#       Email: nguyenthieu2102@gmail.com            %                                                    
-#       Github: https://github.com/thieu1995        %                         
+# Created by "Thieu" at 21:39, 29/06/2022 ----------%
+#       Email: nguyenthieu2102@gmail.com            %
+#       Github: https://github.com/thieu1995        %
 # --------------------------------------------------%
+"""Validation helpers for values and types."""
 
 import operator
 
@@ -10,10 +11,9 @@ import numpy as np
 
 
 def is_in_bound(value, bound):
-    ops = None
-    if type(bound) is tuple:
-        ops = operator.lt
-    elif type(bound) is list:
+    """Check whether ``value`` lies within the given ``bound``."""
+    ops = operator.lt
+    if type(bound) is list:
         ops = operator.le
     if bound[0] == float("-inf") and bound[1] == float("inf"):
         return True
@@ -27,12 +27,14 @@ def is_in_bound(value, bound):
 
 
 def is_str_in_list(value: str, my_list: list):
+    """Check whether the string ``value`` is present in ``my_list``."""
     if type(value) == str and my_list is not None:
         return True if value in my_list else False
     return False
 
 
 def check_int(name: str, value: int, bound=None):
+    """Validate and cast ``value`` to an integer, raising on failure."""
     if type(value) in [int, float]:
         if bound is None:
             return int(value)
@@ -43,6 +45,7 @@ def check_int(name: str, value: int, bound=None):
 
 
 def check_float(name: str, value: int, bound=None):
+    """Validate and cast ``value`` to a float, raising on failure."""
     if type(value) in [int, float]:
         if bound is None:
             return float(value)
@@ -53,6 +56,7 @@ def check_float(name: str, value: int, bound=None):
 
 
 def check_str(name: str, value: str, bound=None):
+    """Validate that ``value`` is a string, raising on failure."""
     if type(value) is str:
         if bound is None or is_str_in_list(value, bound):
             return value
@@ -61,6 +65,7 @@ def check_str(name: str, value: str, bound=None):
 
 
 def check_bool(name: str, value: bool, bound=(True, False)):
+    """Validate that ``value`` is a boolean, raising on failure."""
     if type(value) is bool:
         if value in bound:
             return value
@@ -69,11 +74,12 @@ def check_bool(name: str, value: bool, bound=(True, False)):
 
 
 def check_tuple_int(name: str, values: tuple, bounds=None):
+    """Validate that ``values`` is a tuple of integers, raising on failure."""
     if type(values) in [tuple, list] and len(values) > 1:
         value_flag = [type(item) == int for item in values]
         if np.all(value_flag):
             if bounds is not None and len(bounds) == len(values):
-                value_flag = [is_in_bound(item, bound) for item, bound in zip(values, bounds)]
+                value_flag = [is_in_bound(item, bound) for item, bound in zip(values, bounds, strict=True)]
                 if np.all(value_flag):
                     return values
             else:
@@ -83,11 +89,12 @@ def check_tuple_int(name: str, values: tuple, bounds=None):
 
 
 def check_tuple_float(name: str, values: tuple, bounds=None):
+    """Validate that ``values`` is a tuple of floats, raising on failure."""
     if type(values) in [tuple, list] and len(values) > 1:
         value_flag = [type(item) in [int, float] for item in values]
         if np.all(value_flag):
             if bounds is not None and len(bounds) == len(values):
-                value_flag = [is_in_bound(item, bound) for item, bound in zip(values, bounds)]
+                value_flag = [is_in_bound(item, bound) for item, bound in zip(values, bounds, strict=True)]
                 if np.all(value_flag):
                     return values
             else:

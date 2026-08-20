@@ -1,3 +1,15 @@
+# Version 2026a
+
++ Migrate to the `uv` package structure with a `src/` layout
++ Switch to the hatchling build backend; version now sourced from `__VERSION__` in `src/enoppy/__init__.py`
++ Add Ruff configuration (replacing flake8) and a lint workflow
++ Add pytest and mypy configuration in `pyproject.toml`
++ Migrate GitHub Actions workflows to `uv` and add a docs (GitHub Pages) workflow
++ Move documentation to MkDocs with the Material theme, `mkdocstrings` API reference, and `.bib` citations via `mkdocs-bibtex`
++ Refactor `README.md` and remove the legacy Sphinx/ReadTheDocs configuration
+
+---------------------------------------------------------------------
+
 # Version 0.1.2.1
 
 + Updating dependencies such as NumPy and SciPy

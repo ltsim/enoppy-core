@@ -24,7 +24,7 @@
 # >>> print(p1.get_objs(x0)) # Get all objectives
 # >>> print(p1.get_cons(x0)) # Get all constraints
 # >>> print(p1.evaluate(x0)) # Evaluate the x0 (calculate fitness value with objectives and constraints combination)
+"""ENOPPY: engineering optimization problems in Python."""
 
-__version__ = "2026a"
-
-from .utils import *
+__VERSION__ = "2026a"
+__version__ = __VERSION__

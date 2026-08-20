@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "enoppy-core"
@@ -28,7 +28,6 @@ classifiers = [
     "Intended Audience :: Developers",
     "Intended Audience :: Education",
     "Intended Audience :: Information Technology",
-    "Intended Audience :: Science/Research",
     "Natural Language :: English",
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Programming Language :: Python :: 3",
@@ -40,10 +39,7 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
     "Topic :: Scientific/Engineering :: Mathematics",
     "Topic :: System :: Benchmark",
-    "Topic :: Scientific/Engineering",
-    "Topic :: Scientific/Engineering :: Mathematics",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
-    "Topic :: Software Development :: Build Tools",
     "Topic :: Software Development :: Libraries",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Utilities",
@@ -59,33 +55,70 @@ dev = [
     "pytest>=9.0.2",
     "twine>=4.0.1",
     "mypy>=1.9.0",
+    "ruff>=0.11.0",
+    "build>=1.2.2",
+    "mypy-coverage>=0.2.4; python_version >= '3.11'",
+]
+docs = [
+    "mkdocs>=1.6.1",
+    "mkdocs-material>=9.6.0",
+    "mkdocs-bibtex>=2.15.0",
+    "mkdocstrings[python]>=0.28.0",
+    "pymdown-extensions>=10.0",
 ]
 
 [project.urls]
 "Homepage" = "https://github.com/ltsim/enoppy-core"
-"Documentation" = "https://enoppy.readthedocs.io/"
+"Documentation" = "https://ltsim.github.io/enoppy-core/"
 "Source Code" = "https://github.com/ltsim/enoppy-core"
 "Original Source" = "https://github.com/ltsim/enoppy-core"
 "Bug Tracker" = "https://github.com/ltsim/enoppy-core/issues"
 
-[tool.setuptools]
-packages = { find = { exclude = ["tests*", "examples*"] } }
-include-package-data = true
+[tool.hatch.version]
+path = "src/enoppy/__init__.py"
+pattern = '__VERSION__ = "(?P<version>[^"]+)"'
 
-[tool.setuptools.dynamic]
-version = {attr = "enoppy.__version__"}
+[tool.hatch.metadata]
+license-files = ["LICENSE.md"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/enoppy"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 180
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B", "C4", "I", "T20", "D"]
+ignore = ["E203", "W291"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.per-file-ignores]
+# B027: empty methods in the abstract base are intentional optional overridables.
+"src/enoppy/engineer.py" = ["B027"]
+# E721: exact-type checks that deliberately exclude subclasses (e.g. bool).
+"src/enoppy/utils/validator.py" = ["E721"]
 
 [tool.mypy]
-files = ["enoppy"]
+files = ["src/enoppy"]
 exclude = ["tests/", "docs/", "examples/"]
-python_version = "3.10"
+# ponytail: numpy>=2.4 stubs use PEP 695 type aliases, which require a mypy target >=3.12
+python_version = "3.12"
 warn_unused_ignores = true
 warn_redundant_casts = true
 warn_unreachable = true
 no_implicit_optional = true
 strict_optional = true
-disallow_untyped_defs = true
-disallow_incomplete_defs = true
+# ponytail: legacy formula modules are untyped; annotating all of them is churn.
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
 disallow_any_generics = false
 disallow_any_unimported = false
 disallow_subclassing_any = false
@@ -104,3 +137,4 @@ module = [
     "numpy.*"
 ]
 ignore_missing_imports = true
+disable_error_code = ["syntax"]

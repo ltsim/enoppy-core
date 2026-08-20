@@ -1,8 +1,10 @@
 #!/usr/bin/env python
-# Created by "Thieu" at 16:39, 05/05/2023 ----------%                                                                               
-#       Email: nguyenthieu2102@gmail.com            %                                                    
-#       Github: https://github.com/thieu1995        %                         
+# Created by "Thieu" at 16:39, 05/05/2023 ----------%
+#       Email: nguyenthieu2102@gmail.com            %
+#       Github: https://github.com/thieu1995        %
 # --------------------------------------------------%
+"""Abstract base class for engineering design problems."""
+
 import abc
 
 import numpy as np
@@ -48,7 +50,7 @@ class Engineer(abc.ABC):
         self._n_ineq_cons = -1
         self._n_eq_cons = -1
 
-        self.f_penalty = None
+        self.f_penalty = self.default_penalty
         self.f_global = None
         self.x_global = None
         self.n_fe = 0
@@ -57,83 +59,67 @@ class Engineer(abc.ABC):
         self.w = 1e8
 
     def get_objs(self, x):
-        """
-        Compute the values of the objective functions for a given set of input values.
-        """
+        """Compute the values of the objective functions for a given set of input values."""
         pass
 
     def get_cons(self, x):
-        """
-        Compute the values of the constraint functions for a given set of input values.
-        """
+        """Compute the values of the constraint functions for a given set of input values."""
         pass
 
     def get_eq_cons(self, x):
-        """
-        Compute the values of the equality constraint functions for a given set of input values.
-        """
+        """Compute the values of the equality constraint functions for a given set of input values."""
         pass
 
     def get_ineq_cons(self, x):
-        """
-        Compute the values of the inequality constraint functions for a given set of input values.
-        """
+        """Compute the values of the inequality constraint functions for a given set of input values."""
         pass
 
     def get_paras(self):
-        """
-        Return the parameters of the problem. Depended on function
-        """
-        default = {"bounds": self._bounds, "n_dims": self._n_dims, }
+        """Return the parameters of the problem. Depended on function."""
+        default = {
+            "bounds": self._bounds,
+            "n_dims": self._n_dims,
+        }
         return {**default, **self.paras}
 
     @property
     def bounds(self):
         """
-        The lower/upper bounds to be used for optimization problem. This a 2D-matrix of [lower, upper] array that contain the lower and upper
+        The lower/upper bounds to be used for optimization problem. This a 2D-matrix of [lower, upper] array that contain the lower and upper.
+
         bounds for the problem. The problem should not be asked for evaluation outside these bounds. ``len(bounds) == n_dims``.
         """
         return self._bounds
 
     @property
     def n_dims(self):
-        """
-        The dimensionality of the problem.
-        """
+        """The dimensionality of the problem."""
         return self._n_dims
 
     @property
     def n_objs(self):
-        """
-        The number of objective functions of the problem.
-        """
+        """The number of objective functions of the problem."""
         return self._n_objs
 
     @property
     def n_cons(self):
-        """
-        The number of constraint functions of the problem.
-        """
+        """The number of constraint functions of the problem."""
         return self._n_cons
 
     @property
     def n_eq_cons(self):
-        """
-        The number of equality constraint functions of the problem.
-        """
+        """The number of equality constraint functions of the problem."""
         return self._n_eq_cons
 
     @property
     def n_ineq_cons(self):
-        """
-        The number of inequality constraint functions of the problem.
-        """
+        """The number of inequality constraint functions of the problem."""
         return self._n_ineq_cons
 
     @property
     def lb(self):
         """
-        The lower bounds for the problem
+        The lower bounds for the problem.
 
         Returns
         -------
@@ -145,7 +131,7 @@ class Engineer(abc.ABC):
     @property
     def ub(self):
         """
-        The upper bounds for the problem
+        The upper bounds for the problem.
 
         Returns
         -------
@@ -156,7 +142,7 @@ class Engineer(abc.ABC):
 
     def amend_position(self, x, lb=None, ub=None):
         """
-        Amend position to fit the format of the problem
+        Amend position to fit the format of the problem.
 
         Parameters
         ----------
@@ -167,7 +153,7 @@ class Engineer(abc.ABC):
 
     def create_solution(self):
         """
-        Create a random solution for the current problem
+        Create a random solution for the current problem.
 
         Returns
         -------
@@ -178,7 +164,7 @@ class Engineer(abc.ABC):
 
     def check_solution(self, x):
         """
-        Raise the error if the problem size is not equal to the solution length
+        Raise the error if the problem size is not equal to the solution length.
 
         Parameters
         ----------
@@ -189,6 +175,7 @@ class Engineer(abc.ABC):
             raise ValueError(f"The length of solution should has {self._n_dims} variables!")
 
     def default_penalty(self, list_objs=None, list_cons=None):
+        """Apply the default penalty to the given objectives and constraints."""
         list_objs_new = np.zeros_like(list_objs)
         for idx, val in enumerate(list_objs):
             temp = val + self.w * np.sum([max(0, f_con) for f_con in list_cons])
@@ -196,6 +183,7 @@ class Engineer(abc.ABC):
         return list_objs_new
 
     def check_penalty_func(self, func=None):
+        """Set the penalty function used for evaluation."""
         if callable(func):
             self.f_penalty = func
         else:
@@ -204,7 +192,7 @@ class Engineer(abc.ABC):
     @abc.abstractmethod
     def evaluate(self, x):
         """
-        Evaluation of the benchmark function.
+        Evaluate the benchmark function.
 
         Parameters
         ----------
@@ -219,4 +207,5 @@ class Engineer(abc.ABC):
         pass
 
     def __call__(self, x):
+        """Evaluate the candidate solution."""
         return self.evaluate(x)

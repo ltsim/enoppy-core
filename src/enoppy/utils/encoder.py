@@ -1,16 +1,15 @@
 #!/usr/bin/env python
-# Created by "Thieu" at 13:58, 09/05/2023 ----------%                                                                               
-#       Email: nguyenthieu2102@gmail.com            %                                                    
-#       Github: https://github.com/thieu1995        %                         
+# Created by "Thieu" at 13:58, 09/05/2023 ----------%
+#       Email: nguyenthieu2102@gmail.com            %
+#       Github: https://github.com/thieu1995        %
 # --------------------------------------------------%
+"""Preprocessing encoders."""
 
 import numpy as np
 
 
 class LabelEncoder:
-    """
-    Encode categorical features as integer labels.
-    """
+    """Encode categorical features as integer labels."""
 
     def __init__(self):
         self.unique_labels = None
@@ -20,8 +19,8 @@ class LabelEncoder:
         """
         Fit label encoder to a given set of labels.
 
-        Parameters:
-        -----------
+        Parameters
+        ----------
         y : array-like
             Labels to encode.
         """
@@ -32,13 +31,13 @@ class LabelEncoder:
         """
         Transform labels to encoded integer labels.
 
-        Parameters:
-        -----------
+        Parameters
+        ----------
         y : array-like
             Labels to encode.
 
-        Returns:
-        --------
+        Returns
+        -------
         encoded_labels : array-like
             Encoded integer labels.
         """
@@ -66,13 +65,13 @@ class LabelEncoder:
         """
         Transform integer labels to original labels.
 
-        Parameters:
-        -----------
+        Parameters
+        ----------
         y : array-like
             Encoded integer labels.
 
-        Returns:
-        --------
+        Returns
+        -------
         original_labels : array-like
             Original labels.
         """
